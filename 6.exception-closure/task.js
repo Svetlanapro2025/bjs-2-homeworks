@@ -10,8 +10,7 @@ function parseCount(value) {
 
 function validateCount(value) {
     try {
-        let result = parseCount(value);
-        return result;
+        return parseCount(value);
     } catch (error) {
         return error;
     }     
@@ -32,25 +31,24 @@ class Triangle {
     }
 
     get perimeter() {
-        let perimeter = this.a + this.b + this.c;
-        return perimeter;
+        return this.a + this.b + this.c;
     }
 
     get area() {
-        let halfPerimeter = 1 / 2 * (this.a + this.b + this.c);
-        let area = (Math.sqrt(halfPerimeter * (halfPerimeter - this.a) * (halfPerimeter - this.b) * (halfPerimeter - this.c))).toFixed(3);
-        let areaNumber = +area;
-
-        return areaNumber;
+        let halfPerimeter = 1 / 2 * this.perimeter;
+        return +Math.sqrt(
+            halfPerimeter * 
+            (halfPerimeter - this.a) * 
+            (halfPerimeter - this.b) * 
+            (halfPerimeter - this.c)).toFixed(3);
     }
 }
 
 function getTriangle(a, b, c) {
     try {
-        const triangle = new Triangle(a, b, c);
-        return triangle;
+        return new Triangle(a, b, c);
     } catch (error) {
-        let errorObject = {
+        return {
             get area() {
                 return "Ошибка! Треугольник не существует";
             },
@@ -58,7 +56,5 @@ function getTriangle(a, b, c) {
                 return "Ошибка! Треугольник не существует";
             },
         };
-
-        return errorObject;
     }
 }
